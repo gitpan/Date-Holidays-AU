@@ -1,0 +1,71 @@
+
+=head1 NAME
+
+Date::Holidays::AU - Determine Australian Public Holidays
+
+=head1 SYNOPSIS
+
+  use Date::Holidays::AU qw( is_holiday );
+  my ($year, $month, $day) = (localtime)[ 5, 4, 3 ];
+  $year  += 1900;
+  $month += 1;
+  my ($state) = 'VIC';
+  print "Excellent\n" if is_holiday( $year, $month, $day, $state );
+
+=head1 DESCRIPTION
+
+This module makes an attempt at describing Australian holidays using the 
+interface defined L<Date::Holidays::Abstract>, which defines two methods, 
+is_holiday and holidays.
+
+=head1 Functions
+
+=item is_holiday($year, $month, $day, $state, $params)
+
+returns true or false depending to whether or not the date in question
+is a holiday according to the state and the additional parameters.
+
+=item holidays($year, $state, %params)
+
+Returns a hashref of all defined holidays in the year according 
+to the state and the additional parameters. Keys in the hashref 
+are in 'mmdd' format, the values are the names of the
+holidays.
+
+The states may be 'VIC','WA','NT','QLD','TAS','NSW','SA' or 'ACT'.  The 
+default state is 'VIC'.  The following tables lists the allowable parameters
+for each state;
+
+   State  Parameter             Default   Values
+   VIC    no_melbourne_cup	0         1 | 0
+   NT     region		'Darwin'  'Alice Springs' | 'Tennant Creek' | 'Katherine' | 'Darwin' | 'Borrolooda'
+   QLD    no_show_day		0         1 | 0
+   NSW    include_bank_holiday	0         1 | 0
+   ACT    include_bank_holiday	0         1 | 0
+   TAS    holidays              []        'Devonport Cup','King Island Show','Launceston Cup','Hobart Show','Recreation Day','Burnie Show','Agfest','Launceston Show','Flinders Island Show'
+
+=head1 AUTHOR
+
+David Dick <ddick@cpan.org>
+
+=head1 PREREQUISITES
+
+Uses B<Date::Easter> for easter calculations. Makes use of the B<Time::Local> 
+modules from the standard Perl distribution.
+
+=head1 BUGS
+
+Support for WA's Queen's Birthday holiday only consists of hard-coded values.
+Further investigation is needed.  Therefore WA is not supported after 2007.
+ 
+=head1 COPYRIGHT
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 SEE ALSO
+
+L<Date::Holidays::Abstract>, L<Date::Holiday::DE>, L<Date::Holiday::UK>
+
+=cut
+
