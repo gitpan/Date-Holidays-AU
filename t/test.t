@@ -1,8 +1,9 @@
-#! /usr/bin/perl -I/home/dave/Date-Holidays-AU-0.01/lib -w
+#! /usr/bin/perl 
 
 use Date::Holidays::AU qw( is_holiday holidays );
 use Test::More(tests => 105 );
 use strict;
+use warnings;
 
 # VIC http://www.info.vic.gov.au/resources/publichols.htm
 # NT http://www.nt.gov.au/ocpe/public_holidays.shtml

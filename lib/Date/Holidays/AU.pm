@@ -6,7 +6,7 @@ use Exporter();
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.01';
+our $VERSION   = '0.02';
 
 use warnings;
 use strict;
