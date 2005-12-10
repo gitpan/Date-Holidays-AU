@@ -1,0 +1,7 @@
+CHANGES
+-------
+
+  0.03 - 10 December 2005
+
+      * Patch from JONASBN@cpan.org to allow smoother interaction with Date::Holidays
+

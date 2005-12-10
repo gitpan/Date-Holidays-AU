@@ -6,12 +6,14 @@ use Exporter();
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.02';
+our $VERSION   = '0.03';
 
 use warnings;
 use strict;
 
 our (%cached);
+
+use constant DEFAULT_STATE => 'VIC';
 
 sub holidays {
 	my (%params) = @_;
@@ -26,7 +28,7 @@ sub holidays {
 	}
 	my ($year) = $params{year};
 	unless (exists $params{state}) {
-		$params{state} = 'VIC';	
+		$params{state} = DEFAULT_STATE;	
 	}
 	unless (defined $params{state}) {
 		die("State is undefined\n");
@@ -313,7 +315,7 @@ sub holidays {
 sub is_holiday {
 	my ($year, $month, $day, $state, $params) = @_;
 	my ($key);
-	my ($concat) = $state;
+	my ($concat) = $state ||= DEFAULT_STATE;
 	foreach $key (%$params) {
 		next unless ($params->{$key});
 		if (ref $params->{$key}) {
