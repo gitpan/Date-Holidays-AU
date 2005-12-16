@@ -8,5 +8,6 @@ WriteMakefile(
                                 'Test::More' => 0,
 				'Time::Local' => 0,
 				'Date::Easter' => 0,
+				'Carp' => 0,
                                         },
 );

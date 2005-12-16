@@ -1,7 +1,7 @@
 #! /usr/bin/perl 
 
 use Date::Holidays::AU qw( is_holiday holidays );
-use Test::More(tests => 105 );
+use Test::More(tests => 108 );
 use strict;
 use warnings;
 
@@ -15,13 +15,18 @@ use warnings;
 # TAS http://www.wst.tas.gov.au/attach/stathol2004.pdf
 
 eval { holidays(); };
-ok($@ ne '', "Year must exist");
+ok($@ eq '', "Year and State defaults are provided");
 eval { holidays( 'year' => undef); };
-ok($@ ne '', "Year must be defined");
+ok($@ eq '', "Undefined Year resorts to default");
 eval { holidays( 'year' => 'd144'); };
 ok($@ ne '', "Year must be be numeric");
+eval { holidays( 'year' => '144'); };
+ok($@ ne '', "Year must be numeric");
 eval { holidays( 'year' => 2004, 'state' => 'V1C' ); };
 ok($@ ne '', "State must exist");
+ok(holidays( 'year' => 2004, 'state' => undef ));
+ok(holidays( 'year' => 2004 ));
+
 my ($holidays);
 eval { $holidays = holidays( 'year' => 2004, 'state' => 'VIC' ); };
 ok($@ eq '', "Holidays retrieved");

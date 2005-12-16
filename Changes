@@ -5,3 +5,8 @@ CHANGES
 
       * Patch from JONASBN@cpan.org to allow smoother interaction with Date::Holidays
 
+  0.04 - 17 December 2005
+
+      * Another patch from JONASBN@cpan.org.  Now croaking instead of dying. Handling holidays
+	with reasonable defaults, eg current year and 'VIC' as the state.
+

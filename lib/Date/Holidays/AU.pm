@@ -3,10 +3,11 @@ package Date::Holidays::AU;
 use Time::Local();
 use Date::Easter();
 use Exporter();
+use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.03';
+our $VERSION   = '0.04';
 
 use warnings;
 use strict;
@@ -17,22 +18,19 @@ use constant DEFAULT_STATE => 'VIC';
 
 sub holidays {
 	my (%params) = @_;
-	unless (exists $params{year}) {
-		die("Must supply the year\n");
+	unless ((exists $params{year}) && (defined $params{year})) {
+		$params{year} = (localtime(time))[5];
+		$params{year} += 1900;
 	}
-	unless (defined $params{year}) {
-		die("Year is undefined\n");
-	}
-	unless ($params{year} =~ /^\d+$/) {
-		die("Year must be numeric, eg '2004'\n");
+	unless ($params{year} =~ /^\d{4}$/) {
+		croak("Year must be numeric and four digits, eg '2004'\n");
 	}
 	my ($year) = $params{year};
-	unless (exists $params{state}) {
+	unless (defined $params{state}) {
+		carp "State not defined, setting state to default: ".DEFAULT_STATE;
 		$params{state} = DEFAULT_STATE;	
 	}
-	unless (defined $params{state}) {
-		die("State is undefined\n");
-	}
+
 	my ($state) = uc($params{state});
 	unless (($state eq 'VIC') ||
 			($state eq 'WA') ||
@@ -43,7 +41,7 @@ sub holidays {
 			($state eq 'SA') ||
 			($state eq 'ACT'))
 	{
-		die("State must be one of 'VIC','WA','NT','QLD','TAS','NSW','SA','ACT'\n");
+		croak("State must be one of 'VIC','WA','NT','QLD','TAS','NSW','SA','ACT'\n");
 	}
 	my ($concat) = $state;
 	my ($key);
@@ -86,7 +84,7 @@ sub holidays {
 						}
 					}
 				} else {
-					die("Holidays parameter must be a reference to an array\n");
+					croak("Holidays parameter must be a reference to an array\n");
 				}
 			}
 		}
@@ -146,7 +144,7 @@ sub holidays {
 						}
 					}
 				} else {
-					die("Holidays parameter must be a reference to an array\n");
+					croak("Holidays parameter must be a reference to an array\n");
 				}
 			}
 			foreach $holiday (_compute_eight_hours_day($year)) { # TAS eight hours day
@@ -166,7 +164,7 @@ sub holidays {
 			} elsif (($count == 4) && ($state eq 'TAS')) {
 				$holidays{$holiday} = 'Easter Tuesday';
 			} else {
-				die("Too many days in easter\n");
+				croak("Too many days in easter\n");
 			}
 			$count += 1;
 		}	
@@ -205,7 +203,7 @@ sub holidays {
 						}
 					}
 				} else {
-					die("Holidays parameter must be a reference to an array\n");
+					croak("Holidays parameter must be a reference to an array\n");
 				}
 			}
 		}
@@ -298,7 +296,7 @@ sub holidays {
 						}
 					}
 				} else {
-					die("Holidays parameter must be a reference to an array\n");
+					croak("Holidays parameter must be a reference to an array\n");
 				}
 			}
 		}
@@ -413,7 +411,7 @@ sub _compute_nt_show_day_hash {
 			$month = 7;
 			$numFridays = 4;
 		} else {
-			die("Unknown region\n");
+			croak("Unknown region\n");
 		}
 	} else {
 		$name = 'Darwin Show Day';
@@ -980,7 +978,7 @@ sub _compute_wa_queens_bday { # monday closest to 30 september???  Formula unkno
 		$day = 1;
 		$month = 9;
 	} else {
-		die("Don't know how to calculate Queen's Birthday in WA for this year\n");
+		croak("Don't know how to calculate Queen's Birthday in WA for this year\n");
 	}
 	return (sprintf("%02d%02d",($month + 1),$day));
 }
@@ -992,7 +990,7 @@ sub _compute_easter {
 	my ($sec, $min, $hour, $wday, $yday, $isdst);
 	($sec, $min, $hour, $day, $month, $year, $wday, $yday, $isdst) = localtime($date);
 	unless ($wday == 0) {
-		die("Easter must fall on a Sunday\n");
+		croak("Easter must fall on a Sunday\n");
 	}
 	my (@holidays);
 	# good friday + easter saturday
@@ -1011,7 +1009,7 @@ sub _compute_easter {
 			push @holidays, sprintf("%02d%02d",($month + 1),($day - 1)); 
 		}
 	} else {
-		die("Easter has to fall in march or april\n");
+		croak("Easter has to fall in march or april\n");
 	}
 	# easter sunday
 	push @holidays, sprintf("%02d%02d",($month + 1),$day);

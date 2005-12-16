@@ -3,3 +3,4 @@ Makefile.PL
 Changes
 t/test.t
 lib/Date/Holidays/AU.pm
+lib/Date/Holidays/AU.pod
