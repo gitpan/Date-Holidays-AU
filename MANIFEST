@@ -4,3 +4,4 @@ Changes
 t/test.t
 lib/Date/Holidays/AU.pm
 lib/Date/Holidays/AU.pod
+META.yml                                 Module meta-data (added by MakeMaker)

@@ -7,7 +7,7 @@ use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.04';
+our $VERSION   = '0.05';
 
 use warnings;
 use strict;
@@ -977,6 +977,15 @@ sub _compute_wa_queens_bday { # monday closest to 30 september???  Formula unkno
 	} elsif ($year == 2007) {
 		$day = 1;
 		$month = 9;
+	} elsif ($year == 2008) {
+		$day = 29;
+		$month = 8;
+	} elsif ($year == 2009) {
+		$day = 28;
+		$month = 8;
+	} elsif ($year == 2009) {
+		$day = 27;
+		$month = 8;
 	} else {
 		croak("Don't know how to calculate Queen's Birthday in WA for this year\n");
 	}
