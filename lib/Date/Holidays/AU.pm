@@ -7,7 +7,7 @@ use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.05';
+our $VERSION   = '0.06';
 
 use warnings;
 use strict;
@@ -983,7 +983,7 @@ sub _compute_wa_queens_bday { # monday closest to 30 september???  Formula unkno
 	} elsif ($year == 2009) {
 		$day = 28;
 		$month = 8;
-	} elsif ($year == 2009) {
+	} elsif ($year == 2010) {
 		$day = 27;
 		$month = 8;
 	} else {
