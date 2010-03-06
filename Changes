@@ -10,3 +10,6 @@ CHANGES
       * Another patch from JONASBN@cpan.org.  Now croaking instead of dying. Handling holidays
 	with reasonable defaults, eg current year and 'VIC' as the state.
 
+  0.07 - 6 March 2010
+
+      * Adding WA Queens Birthday for 2011 and 2012
