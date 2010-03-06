@@ -7,7 +7,7 @@ use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.07';
+our $VERSION   = '0.08';
 
 use warnings;
 use strict;

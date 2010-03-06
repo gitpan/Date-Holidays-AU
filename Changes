@@ -10,6 +10,19 @@ CHANGES
       * Another patch from JONASBN@cpan.org.  Now croaking instead of dying. Handling holidays
 	with reasonable defaults, eg current year and 'VIC' as the state.
 
+  0.05 - 11 August 2007
+
+      * Adding WA Queens Birthday for 2008, 2009 and 2010.
+      * Added META.yml file
+
+  0.06 - 9 Feb 2007
+
+      * Fixed WA Queens Birthday for 2010
+
   0.07 - 6 March 2010
 
       * Adding WA Queens Birthday for 2011 and 2012
+
+  0.08 - 7 March 2011
+
+      * Added Makefile.PL license and abstract entries

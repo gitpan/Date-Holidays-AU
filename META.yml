@@ -1,9 +1,10 @@
 --- #YAML:1.0
 name:                Date-Holidays-AU
-version:             0.07
-abstract:            ~
-license:             ~
-author:              ~
+version:             0.08
+abstract:            Determine Australian Public Holidays
+license:             perl
+author:              
+    - David Dick <ddick@cpan.org>
 generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
