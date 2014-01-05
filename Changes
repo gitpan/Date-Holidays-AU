@@ -1,6 +1,11 @@
 CHANGES
 -------
 
+  0.10 - 5 Jan 2014
+
+      * Adding WA Queens Birthday for 2015 and 2016
+      * perltidy and perlcritic passing at -5
+
   0.09 - 3 March 2012
 
       * Adding WA Queens Birthday for 2013 and 2014
