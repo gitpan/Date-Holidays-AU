@@ -10,7 +10,7 @@ use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.10';
+our $VERSION   = '0.11';
 
 our (%cached);
 
@@ -206,7 +206,8 @@ sub holidays {
             }
             $count += 1;
         }
-        if ( ( $state eq 'VIC' ) || ( $state eq 'TAS' ) ) {
+        if ( ( $state eq 'VIC' ) || ( $state eq 'TAS' ) || ( $state eq 'NSW' ) )
+        {
             foreach my $holiday ( _compute( 25, 4, $year ) ) {    # ANZAC day
                 $holidays{$holiday} = 'Anzac Day';
             }
@@ -215,7 +216,7 @@ sub holidays {
             foreach
               my $holiday ( _compute( 25, 4, $year, { 'day_in_lieu' => 1 } ) )
             {                                                     # ANZAC day
-                if ( $holiday eq '2504' ) {
+                if ( $holiday eq '0425' ) {
                     $holidays{$holiday} = 'Anzac Day';
                 }
                 else {
@@ -473,6 +474,13 @@ sub _compute_christmas_hash {
             'name' => "$boxingDay Holiday",
             'date' => sprintf( "%02d%02d", $month, ( $day + 2 ) ),
           };
+        if ( ( $state eq 'NSW' ) && ( $year > 2011 ) ) {
+            push @holidays,
+              {
+                'name' => "Additional Day",
+                'date' => sprintf( "%02d%02d", $month, ( $day + 3 ) ),
+              };
+        }
     }
     elsif ( $wday == 6 ) {    # Christmas is on a Saturday
         push @holidays,
@@ -485,6 +493,13 @@ sub _compute_christmas_hash {
             'name' => "$boxingDay Holiday",
             'date' => sprintf( "%02d%02d", $month, ( $day + 3 ) ),
           };
+        if ( ( $state eq 'NSW' ) && ( $year > 2011 ) ) {
+            push @holidays,
+              {
+                'name' => "Additional Day",
+                'date' => sprintf( "%02d%02d", $month, ( $day + 4 ) ),
+              };
+        }
     }
     elsif ( $wday == 0 ) {    # Christmas is on a Sunday
         push @holidays,
@@ -492,6 +507,13 @@ sub _compute_christmas_hash {
             'name' => 'Christmas Day Holiday',
             'date' => sprintf( "%02d%02d", $month, ( $day + 2 ) ),
           };
+        if ( ( $state eq 'NSW' ) && ( $year > 2011 ) ) {
+            push @holidays,
+              {
+                'name' => "Additional Day",
+                'date' => sprintf( "%02d%02d", $month, ( $day + 3 ) ),
+              };
+        }
     }
     return (@holidays);
 }

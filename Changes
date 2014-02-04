@@ -1,6 +1,11 @@
 CHANGES
 -------
 
+  0.11 - 4 Feb 2014
+
+      * RT #92714 - Changing NSW to not get a ANZAC Day Holiday if ANZAC Day falls on a weekend
+      * RT #92714 - Changing NSW to get "Additional Day" if Christmas Day or Boxing Day falls on a weekend
+
   0.10 - 5 Jan 2014
 
       * Adding WA Queens Birthday for 2015 and 2016
