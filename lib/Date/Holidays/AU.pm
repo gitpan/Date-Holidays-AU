@@ -10,7 +10,7 @@ use Carp;
 
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(is_holiday holidays);
-our $VERSION   = '0.11';
+our $VERSION   = '0.12';
 
 our (%cached);
 

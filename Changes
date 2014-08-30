@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.12 - 31 Aug 2014
+
+      * RT #98471 - Fixing pod errors.  Patch from JONASBN.
+
   0.11 - 4 Feb 2014
 
       * RT #92714 - Changing NSW to not get a ANZAC Day Holiday if ANZAC Day falls on a weekend
@@ -35,10 +39,10 @@ CHANGES
 
   0.04 - 17 December 2005
 
-      * Another patch from JONASBN@cpan.org.  Now croaking instead of dying. Handling holidays
+      * Another patch from JONASBN.  Now croaking instead of dying. Handling holidays
 	with reasonable defaults, eg current year and 'VIC' as the state.
 
   0.03 - 10 December 2005
 
-      * Patch from JONASBN@cpan.org to allow smoother interaction with Date::Holidays
+      * Patch from JONASBN to allow smoother interaction with Date::Holidays
 
